@@ -52,7 +52,25 @@ q_1.check()
 
 2. Deleted comments
 
+# Query to determine how many posts were deleted
+deleted_posts_query = """
+                      SELECT COUNT(1) AS num_deleted_posts
+                      FROM `bigquery-public-data.hacker_news.full`
+                      WHERE deleted = True
+                      """
 
+# Set up the query
+query_job = client.query(deleted_posts_query)
+
+# API request - run the query, and return a pandas DataFrame
+deleted_posts = query_job.to_dataframe()
+
+# View results
+print(deleted_posts)
+
+num_deleted_posts = 859401
+# Check your answer
+q_2.check()
 
 
 
