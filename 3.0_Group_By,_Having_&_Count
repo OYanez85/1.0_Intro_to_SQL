@@ -1,1 +1,31 @@
+#### Group By, Having & Count
+-----------------
+## COUNT()
+---------------
+# For instance, if we SELECT the COUNT() of the ID column in the pets table, it will return 4, because there are 4 ID's in the table.
 
+query = """
+        SELECT COUNT(ID)
+        FROM 'bigquery-public-data.pet_records.pets'
+"""
+------------------
+## GROUP BY
+-------------------
+# We can use GROUP BY to group together rows that have the same value in the Animal column, while using COUNT() to find out how many ID's we have in each group.
+
+query = """
+        SELECT Animal, COUNT(ID)
+        FROM 'bigquery-public-data.pet_records.pets'
+        GROUP BY Animal
+"""
+-------------------------
+## GROUP BY ... HAVING
+-------------------------
+# So this query, for example, will only include groups that have more than one ID in them.
+
+query = """
+        SELECT Animal, COUNT(ID)
+        FROM 'bigquery-public-data.pet_records.pets'
+        GROUP BY Animal
+        HAVING COUNT(ID) > 1
+"""
