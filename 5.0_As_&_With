@@ -19,6 +19,7 @@ query = """
           SELECT ID, Name
           FROM 'bigquery-public-data.pet_records.pets'
           WHERE Years_old > 5
+
         )
         """
 -----------------
