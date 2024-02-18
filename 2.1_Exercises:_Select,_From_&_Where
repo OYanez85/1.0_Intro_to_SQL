@@ -51,4 +51,23 @@ q_1.check()
 
 2.
 
+# Query to select all columns where pollution levels are exactly 0
+zero_pollution_query = """
+        SELECT *
+        FROM `bigquery-public-data.openaq.global_air_quality`
+        WHERE value = 0
+        """ # Your code goes here
+
+# Set up the query
+safe_config = bigquery.QueryJobConfig(maximum_bytes_billed=10**10)
+query_job = client.query(zero_pollution_query, job_config=safe_config)
+
+# API request - run the query and return a pandas DataFrame
+zero_pollution_results = query_job.to_dataframe() # Your code goes here
+
+print(zero_pollution_results.head())
+
+# Check your answer
+q_2.check()
+
 
