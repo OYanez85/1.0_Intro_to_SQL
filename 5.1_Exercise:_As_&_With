@@ -42,4 +42,51 @@ q_1.check()
 --------------------------------
 # Your code here
 client.list_rows(table, max_results=5).to_dataframe()
+----------------------------------
+# Your code goes here
+rides_per_year_query = """
+                       SELECT EXTRACT(YEAR FROM trip_start_timestamp) AS year, 
+                              COUNT(1) AS num_trips
+                       FROM `bigquery-public-data.chicago_taxi_trips.taxi_trips`
+                       GROUP BY year
+                       ORDER BY year
+                       """
+
+# Set up the query (cancel the query if it would use too much of 
+# your quota)
+safe_config = bigquery.QueryJobConfig(maximum_bytes_billed=10**10)
+rides_per_year_query_job = client.query(rides_per_year_query, job_config=safe_config)
+
+# API request - run the query, and return a pandas DataFrame
+rides_per_year_result = rides_per_year_query_job.to_dataframe()
+# Check your answer
+q_3.check()
+----------------------------
+4) Dive slightly deeper
+
+# Your code goes here
+rides_per_month_query = """
+                       SELECT EXTRACT(MONTH FROM trip_start_timestamp) AS month, 
+                              COUNT(1) AS num_trips
+                       FROM `bigquery-public-data.chicago_taxi_trips.taxi_trips`
+                       WHERE EXTRACT(YEAR FROM trip_start_timestamp) = 2016
+                       GROUP BY month
+                       ORDER BY month
+                       """ 
+# Set up the query
+safe_config = bigquery.QueryJobConfig(maximum_bytes_billed=10**10)
+rides_per_month_query_job = client.query(rides_per_month_query, job_config=safe_config) # Your code goes here
+
+# API request - run the query, and return a pandas DataFrame
+rides_per_month_result = rides_per_month_result = rides_per_month_query_job.to_dataframe() # Your code goes here
+
+# View results
+print(rides_per_month_result)
+
+# Check your answer
+q_4.check()
+---------------------------
+5) Write the query
+------------------------------
+
 
