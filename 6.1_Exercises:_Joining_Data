@@ -73,3 +73,5 @@ questions_results = questions_query_job.to_dataframe()
 
 # Check your answer
 q_3.check()
+---------------------------------------
+4) Your first join
