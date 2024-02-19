@@ -54,3 +54,22 @@ query = """
         WHERE Name LIKE '%ipl%'
         """
 --------------------------------
+3) Selecting the right questions
+-------------------------------
+# Your code here
+questions_query = """
+                  SELECT id, title, owner_user_id
+                  FROM `bigquery-public-data.stackoverflow.posts_questions`
+                  WHERE tags LIKE '%bigquery%'
+                  """
+
+# Set up the query (cancel the query if it would use too much of 
+# your quota, with the limit set to 1 GB)
+safe_config = bigquery.QueryJobConfig(maximum_bytes_billed=10**10)
+questions_query_job = client.query(questions_query, job_config=safe_config)
+
+# API request - run the query, and return a pandas DataFrame
+questions_results = questions_query_job.to_dataframe()
+
+# Check your answer
+q_3.check()
