@@ -23,6 +23,10 @@ query = """
         )
         """
 -----------------
+# A common table expression (or CTE) is a temporary table that you return within your query. 
+# CTEs are helpful for splitting your queries into readable chunks, and you can write queries against them.
+
+For instance, you might want to use the pets table to ask questions about older animals in particular. So you can start by creating a CTE which only contains information about animals more than five years old like this:
 query = """
         WITH Seniors AS
         (  
