@@ -40,4 +40,6 @@ q_1.check()
 -------------------------------
 2) Peek at the data
 --------------------------------
+# Your code here
+client.list_rows(table, max_results=5).to_dataframe()
 
