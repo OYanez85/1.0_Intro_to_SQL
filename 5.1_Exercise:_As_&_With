@@ -21,3 +21,23 @@ dataset = client.get_dataset(dataset_ref)
 --------------------------------------------
 1) Find the data
 
+# Your code here to find the table name
+tables = list(client.list_tables(dataset))
+for table in tables:  
+    print(table.table_id)
+----------------------
+# List all the tables in the "chicago_crime" dataset
+tables = list(client.list_tables(dataset))
+
+# Print number of tables in the dataset
+print(len(tables))
+--------------------------
+# Write the table name as a string below
+table_name = 'taxi_trips'
+
+# Check your answer
+q_1.check()
+-------------------------------
+2) Peek at the data
+--------------------------------
+
